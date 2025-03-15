@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# antigen
+
+source ~/antigen.zsh
+antigen init ~/.antigenrc
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -88,7 +93,18 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='nvim'
 # fi
 
-export EDITOR='neovide'
+{{- if eq .chezmoi.hostname "bagelmachine" -}}
+export EDITOR="neovide"
+export VISUAL="neovide"
+alias vim="neovide"
+alias vi="neovide"
+{{- else -}}
+export EDITOR="nvim"
+export VISUAL="nvim"
+alias vim="nvim"
+alias vi="nvim"
+{{- end }}
+
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
