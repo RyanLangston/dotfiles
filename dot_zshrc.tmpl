@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "bagelmachine" -}}
+{{- if or (eq .chezmoi.hostname "bagelmachine") (eq .chezmoi.hostname "supertop") -}}
 export EDITOR="neovide"
 export VISUAL="neovide"
 alias vim="neovide"
@@ -31,3 +31,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+export MANPAGER='nvim +Man!' 
