@@ -3,11 +3,17 @@ export EDITOR="neovide"
 export VISUAL="neovide"
 alias vim="neovide"
 alias vi="neovide"
+export SSH_AUTH_SOCK=/home/ryanl/.bitwarden-ssh-agent.sock
 {{- else -}}
 export EDITOR="nvim"
 export VISUAL="nvim"
 alias vim="nvim"
 alias vi="nvim"
+
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye > /dev/null
 {{- end }}
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -15,11 +21,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source ~/antigen.zsh
 antigen init ~/.antigenrc
 
-
-export GPG_TTY=$(tty)
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-gpg-connect-agent updatestartuptty /bye > /dev/null
 
 eval "$(fnm env --use-on-cd --shell zsh)"
 eval "$(zoxide init zsh)"
