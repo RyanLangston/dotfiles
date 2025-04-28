@@ -4,7 +4,8 @@ export VISUAL="neovide"
 alias vim="neovide"
 alias vi="neovide"
 export SSH_AUTH_SOCK=/home/ryanl/.bitwarden-ssh-agent.sock
-eval "$(zellij setup --generate-auto-start zsh)"
+# Disabled zellij for performance reasons
+# eval "$(zellij setup --generate-auto-start zsh)"
 {{- else -}}
 export EDITOR="nvim"
 export VISUAL="nvim"
