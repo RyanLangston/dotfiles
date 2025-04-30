@@ -6,6 +6,9 @@ alias vi="neovide"
 export SSH_AUTH_SOCK=/home/ryanl/.bitwarden-ssh-agent.sock
 # Disabled zellij for performance reasons
 # eval "$(zellij setup --generate-auto-start zsh)"
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
 {{- else -}}
 export EDITOR="nvim"
 export VISUAL="nvim"
